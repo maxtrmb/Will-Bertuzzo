@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will & Bertuzzo – Garten & Landschaftsbau</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest:   #1C3A2A;
+      --moss:     #3D6B4F;
+      --sage:     #7DAF8A;
+      --stone:    #C8BFA8;
+      --cream:    #F7F4EE;
+      --bark:     #2E1F0F;
+      --white:    #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--bark);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(28, 58, 42, 0.96);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--sage); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--stone);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(28,58,42,0.72) 0%, rgba(28,58,42,0.45) 60%, rgba(28,58,42,0.82) 100%),
+        url('images/Schnee.jpeg') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding: 140px 60px 80px;
+    }
+    .hero-content { max-width: 680px; }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--sage);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 28px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sage);
+    }
+    .hero p {
+      font-size: 1.1rem; font-weight: 300;
+      color: rgba(247,244,238,0.85);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 44px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--sage);
+      color: var(--forest);
+      padding: 16px 36px;
+      font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-block;
+      border: 1.5px solid var(--stone);
+      color: var(--stone);
+      padding: 15px 36px;
+      font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none;
+      margin-left: 16px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--white); color: var(--white); }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 100px 60px; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--moss);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .section-sub {
+      font-size: 1rem; color: #5a5042;
+      line-height: 1.75; max-width: 560px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--white); }
+    .about-inner {
+      display: grid; grid-template-columns: 45% 55%; gap: 60px; align-items: start;
+    }
+    .about-img {
+      width: 100%; height: auto; max-height: 520px; object-fit: cover;
+      filter: saturate(0.95);
+      border-radius: 10px;
+      box-shadow: 0 12px 28px rgba(17,17,17,0.12);
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      margin-top: 48px;
+    }
+    .stat-box { border-left: 3px solid var(--sage); padding-left: 16px; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 900; color: var(--forest);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.82rem; color: #7a6e5f; margin-top: 4px; }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--cream); }
+    .services-header { max-width: 600px; margin-bottom: 64px; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+    }
+    .service-card {
+      background: var(--white);
+      padding: 40px 36px;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .service-card:hover { background: var(--forest); }
+    .service-card:hover .service-icon,
+    .service-card:hover .service-title,
+    .service-card:hover .service-text { color: var(--cream); }
+    .service-icon { font-size: 2rem; margin-bottom: 20px; display: block; }
+    .service-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--forest); margin-bottom: 12px;
+      transition: color 0.25s;
+    }
+    .service-text {
+      font-size: 0.9rem; color: #6a5f50;
+      line-height: 1.65; transition: color 0.25s;
+    }
+
+    /* ─── PROCESS ─── */
+    .process { background: var(--forest); color: var(--cream); }
+    .process .section-label { color: var(--sage); }
+    .process .section-title { color: var(--white); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px;
+      margin-top: 64px;
+    }
+    .step { position: relative; }
+    .step::after {
+      content: '→';
+      position: absolute; right: -28px; top: 12px;
+      color: var(--sage); font-size: 1.4rem;
+    }
+    .step:last-child::after { display: none; }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: var(--moss); line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step-title { font-weight: 600; font-size: 1rem; margin-bottom: 10px; color: var(--white); }
+    .step-text { font-size: 0.88rem; color: var(--stone); line-height: 1.65; }
+
+    /* ─── GALLERY ─── */
+    .gallery { background: var(--cream); padding-bottom: 0; }
+    .gallery-header { margin-bottom: 48px; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .comparison-card {
+      display: grid;
+      gap: 18px;
+      padding: 28px;
+      background: var(--white);
+      box-shadow: 0 18px 40px rgba(17,17,17,0.10);
+      border: 1px solid rgba(125,175,138,0.25);
+      border-radius: 18px;
+    }
+    .comparison-card::before {
+      content: '';
+      width: 52px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--sage), var(--forest));
+      border-radius: 999px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .comparison-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+    .comparison-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .comparison-item {
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      border-radius: 16px;
+      border: 1px solid rgba(125,175,138,0.18);
+      background: #f8f3eb;
+    }
+    .comparison-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease, filter 0.35s ease;
+      filter: saturate(0.95);
+    }
+    .comparison-item:hover img {
+      transform: scale(1.05);
+      filter: saturate(1);
+    }
+    .comparison-label {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: rgba(247,244,238,0.95);
+      color: var(--forest);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-radius: 999px;
+      box-shadow: 0 10px 20px rgba(17,17,17,0.08);
+    }
+    .gallery-item { overflow: hidden; }
+
+    /* ─── CONTACT ─── */
+    .contact { background: var(--white); }
+    .contact-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .contact-info { }
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-top: 36px;
+    }
+    .contact-icon { font-size: 1.3rem; margin-top: 2px; }
+    .contact-detail-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--moss); }
+    .contact-detail-val { font-size: 1rem; color: var(--bark); margin-top: 4px; line-height: 1.5; }
+
+    .contact-form { }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
+    .form-group label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--moss); margin-bottom: 8px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      border: 1.5px solid #d8d0c0;
+      padding: 13px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--bark);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--moss); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit { width: 100%; padding: 16px; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--forest); color: var(--white); border: none; cursor: pointer; transition: background 0.2s; }
+    .form-submit:hover { background: var(--moss); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bark);
+      color: var(--stone);
+      padding: 48px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--cream);
+    }
+    .footer-logo span { color: var(--sage); }
+    .footer-copy { font-size: 0.82rem; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 0.82rem; color: var(--stone);
+      text-decoration: none; letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--sage); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      section { padding: 56px 20px; }
+      .hero { padding: 96px 20px 48px; }
+      .about-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+      .about-inner { align-items: center; }
+      .about-img {
+        width: 100%; height: auto; max-height: 320px; object-fit: cover;
+        border-radius: 8px; box-shadow: 0 8px 20px rgba(17,17,17,0.10);
+      }
+      .gallery-header { margin-bottom: 32px; }
+      .comparison-card {
+        padding: 18px;
+      }
+      .comparison-title { font-size: 1rem; }
+      .comparison-label {
+        top: 10px; left: 10px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+      }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .step::after { display: none; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 18px; }
+      .comparison-row { grid-template-columns: 1fr; gap: 16px; }
+      .comparison-item { min-height: 160px; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Will<span>&</span>Bertuzzo</div>
+  <ul class="nav-links">
+    <li><a href="#about">Über uns</a></li>
+    <li><a href="#services">Leistungen</a></li>
+    <li><a href="#process">Ablauf</a></li>
+    <li><a href="#gallery">Projekte</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Garten & Landschaftsbau · Gegründet 2026</p>
+    <h1>Wir gestalten<br><em>Ihren Garten</em><br>nach Maß.</h1>
+    <p>Von der ersten Skizze bis zur letzten Pflanzung – Will & Bertuzzo plant, baut und pflegt Außenanlagen, die zu Ihnen passen und über Jahre hinaus begeistern.</p>
+    <a href="#contact" class="btn-primary">Kostenloses Angebot</a>
+    <a href="#services" class="btn-outline">Leistungen ansehen</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <img
+      src="images/Kirschbaum.jpeg"
+      alt="Gartenarbeit"
+      class="about-img reveal"
+    />
+    <div class="reveal">
+      <p class="section-label">Über uns</p>
+      <h2 class="section-title">Leidenschaft für grüne Lebensräume</h2>
+      <p class="section-sub">
+        Will & Bertuzzo steht für handwerkliche Sorgfalt, ehrliche Beratung und Projekte, die wir mit echtem Engagement umsetzen. Unser Team aus erfahrenen Garten- und Landschaftsbauern kennt jede Pflanze, jeden Stein – und weiß, wie man daraus etwas Bleibendes schafft.
+      </p>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Jahre Erfahrung</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100+</div>
+          <div class="stat-label">Abgeschlossene Projekte</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Zufriedene Kunden</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Fachleute im Team</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <p class="section-label">Unsere Leistungen</p>
+    <h2 class="section-title">Was wir für Sie tun können</h2>
+    <p class="section-sub">Von der Neuanlage bis zur laufenden Pflege – wir begleiten Ihren Garten durch alle Jahreszeiten.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🌿</span>
+      <div class="service-title">Gartengestaltung & Neuanlage</div>
+      <p class="service-text">Individuelle Planung und Umsetzung kompletter Gartenanlagen – von der Bepflanzung bis zur Wegeführung.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🪨</span>
+      <div class="service-title">Pflasterarbeiten & Wege</div>
+      <p class="service-text">Naturstein, Beton- und Klinkerarbeiten für Terrassen, Einfahrten, Wege und Platzgestaltungen.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🌳</span>
+      <div class="service-title">Baum- & Heckenpflege</div>
+      <p class="service-text">Fachgerechter Baumschnitt, Heckenpflege und Baumfällung nach DIN-Norm durch ausgebildete Fachkräfte.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🌱</span>
+      <div class="service-title">Rasenpflege & Neuanlage</div>
+      <p class="service-text">Rollrasen, Saatgut-Rasen oder Mähroboter-Vorbereitung – wir sorgen für grüne, gesunde Flächen.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">💧</span>
+      <div class="service-title">Bewässerungssysteme</div>
+      <p class="service-text">Planung und Installation automatischer Bewässerungsanlagen für Privat- und Gewerbeimmobilien.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏡</span>
+      <div class="service-title">Terrassen & Sichtschutz</div>
+      <p class="service-text">Holz- und WPC-Terrassen, Pergolen, Sichtschutzzäune und Carports nach Ihren Wünschen gebaut.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🌸</span>
+      <div class="service-title">Pflanzplanung & Bepflanzung</div>
+      <p class="service-text">Jahreszeitliche und nachhaltige Bepflanzung für Beete, Kübel, Dachterrassen und Innenräume.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">❄️</span>
+      <div class="service-title">Winterdienst</div>
+      <p class="service-text">Verlässlicher Räum- und Streudienst für Privatgrundstücke und Gewerbeflächen – pünktlich und zuverlässig.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🔧</span>
+      <div class="service-title">Gartenpflege & Wartung</div>
+      <p class="service-text">Regelmäßige Pflegeverträge für Privatgärten und Firmengelände – flexibel und nach Absprache.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <p class="section-label">Wie wir arbeiten</p>
+  <h2 class="section-title">Von der Idee zum fertigen Garten</h2>
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Beratungsgespräch</div>
+      <p class="step-text">Wir kommen zu Ihnen und hören zu – Ihre Wünsche, Ihr Budget, Ihr Stil. Kostenlos und unverbindlich.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Planung & Angebot</div>
+      <p class="step-text">Wir erstellen einen detaillierten Plan mit Bepflanzungskonzept, Materialwahl und transparentem Angebot.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Umsetzung</div>
+      <p class="step-text">Unser Team arbeitet zuverlässig, sauber und termingerecht – mit täglicher Abstimmung bei Bedarf.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Übergabe & Pflege</div>
+      <p class="step-text">Nach der Fertigstellung erklären wir alles und bleiben als Pflegepartner gerne an Ihrer Seite.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header reveal">
+    <p class="section-label">Unsere Projekte</p>
+    <h2 class="section-title">Vorher & Nachher</h2>
+    <p class="section-sub">Sehen Sie hier projektbezogen die Entwicklung: jede Nummer zeigt Vorher und Nachher desselben Projekts.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="comparison-card reveal">
+      <div class="comparison-title">Projekt 1</div>
+      <div class="comparison-row">
+        <div class="comparison-item">
+          <span class="comparison-label">Vorher 1</span>
+          <img src="images/Vorher1.jpeg" alt="Vorher Projekt 1" />
+        </div>
+        <div class="comparison-item">
+          <span class="comparison-label">Nachher 1</span>
+          <img src="images/Nachher1.jpeg" alt="Nachher Projekt 1" />
+        </div>
+      </div>
+    </div>
+    <div class="comparison-card reveal">
+      <div class="comparison-title">Projekt 2</div>
+      <div class="comparison-row">
+        <div class="comparison-item">
+          <span class="comparison-label">Vorher 2</span>
+          <img src="images/Vorher2.jpeg" alt="Vorher Projekt 2" />
+        </div>
+        <div class="comparison-item">
+          <span class="comparison-label">Nachher 2</span>
+          <img src="images/Nachher2.jpeg" alt="Nachher Projekt 2" />
+        </div>
+      </div>
+    </div>
+    <div class="comparison-card reveal">
+      <div class="comparison-title">Projekt 3</div>
+      <div class="comparison-row">
+        <div class="comparison-item">
+          <span class="comparison-label">Vorher 3</span>
+          <img src="images/Vorher3.jpeg" alt="Vorher Projekt 3" />
+        </div>
+        <div class="comparison-item">
+          <span class="comparison-label">Nachher 3</span>
+          <img src="images/Nachher3.jpeg" alt="Nachher Projekt 3" />
+        </div>
+      </div>
+    </div>
+    <div class="comparison-card reveal">
+      <div class="comparison-title">Projekt 4</div>
+      <div class="comparison-row">
+        <div class="comparison-item">
+          <span class="comparison-label">Vorher 4</span>
+          <img src="images/Vorher4.jpeg" alt="Vorher Projekt 4" />
+        </div>
+        <div class="comparison-item">
+          <span class="comparison-label">Nachher 4</span>
+          <img src="images/Nachher4.jpeg" alt="Nachher Projekt 4" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-label">Kontakt</p>
+      <h2 class="section-title">Lassen Sie uns Ihren Garten planen</h2>
+      <p class="section-sub">Schreiben Sie uns oder rufen Sie direkt an – wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+
+      <div class="contact-detail">
+        <span class="contact-icon">📍</span>
+        <div>
+          <div class="contact-detail-label">Adresse</div>
+          <div class="contact-detail-val">Musterstraße 12<br>50667 Köln</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-icon">📞</span>
+        <div>
+          <div class="contact-detail-label">Telefon</div>
+          <div class="contact-detail-val">+49 221 123 456 78</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <div class="contact-detail-label">E-Mail</div>
+          <div class="contact-detail-val">info@will-bertuzzo.de</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <span class="contact-icon">🕐</span>
+        <div>
+          <div class="contact-detail-label">Erreichbarkeit</div>
+          <div class="contact-detail-val">Mo – Fr: 7:00 – 18:00 Uhr<br>Sa: 8:00 – 13:00 Uhr</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vorname</label>
+          <input type="text" placeholder="Max" />
+        </div>
+        <div class="form-group">
+          <label>Nachname</label>
+          <input type="text" placeholder="Mustermann" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="email" placeholder="max@beispiel.de" />
+      </div>
+      <div class="form-group">
+        <label>Telefon (optional)</label>
+        <input type="tel" placeholder="+49 ..." />
+      </div>
+      <div class="form-group">
+        <label>Gewünschte Leistung</label>
+        <select>
+          <option value="">Bitte auswählen ...</option>
+          <option>Gartengestaltung & Neuanlage</option>
+          <option>Pflasterarbeiten & Wege</option>
+          <option>Baum- & Heckenpflege</option>
+          <option>Rasenpflege & Neuanlage</option>
+          <option>Bewässerungssysteme</option>
+          <option>Terrassen & Sichtschutz</option>
+          <option>Pflanzplanung & Bepflanzung</option>
+          <option>Winterdienst</option>
+          <option>Gartenpflege & Wartung</option>
+          <option>Sonstiges</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ihre Nachricht</label>
+        <textarea placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Frage ..."></textarea>
+      </div>
+      <button class="form-submit">Anfrage senden</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Will<span>&</span>Bertuzzo</div>
+  <div class="footer-copy">© 2026 Will & Bertuzzo · Garten & Landschaftsbau · Köln</div>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>

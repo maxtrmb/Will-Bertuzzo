@@ -285,7 +285,6 @@
     .contact-inner {
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
     }
-    .contact-info { }
     .contact-detail {
       display: flex; align-items: flex-start; gap: 16px;
       margin-top: 36px;
@@ -294,7 +293,6 @@
     .contact-detail-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--moss); }
     .contact-detail-val { font-size: 1rem; color: var(--bark); margin-top: 4px; line-height: 1.5; }
 
-    .contact-form { }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
     .form-group label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--moss); margin-bottom: 8px; }
@@ -752,20 +750,6 @@
         contactForm.reset();
       } else {
         showPopup(false);
-      }
-    } catch (error) {
-      showPopup(false);
-    }
-  }
-
-  contactForm.addEventListener('submit', submitContactForm);
-  closeModal.addEventListener('click', hidePopup);
-  modalAction.addEventListener('click', hidePopup);
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) {
-      hidePopup();
-    }
-  });
       }
     } catch (error) {
       showPopup(false);

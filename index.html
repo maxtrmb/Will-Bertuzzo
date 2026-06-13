@@ -735,10 +735,14 @@
     event.preventDefault();
     const ajaxUrl = contactForm.dataset.ajaxAction;
     const formData = new FormData(contactForm);
-      const replyToValue = formData.get('email');
-      if (replyToValue) {
-        formData.set('_replyto', replyToValue);
-      }
+    const replyToValue = formData.get('email');
+    if (replyToValue) {
+      formData.set('_replyto', replyToValue);
+    }
+
+    try {
+      const response = await fetch(ajaxUrl, {
+        method: 'POST',
         body: formData,
         headers: { 'Accept': 'application/json' }
       });
@@ -748,6 +752,20 @@
         contactForm.reset();
       } else {
         showPopup(false);
+      }
+    } catch (error) {
+      showPopup(false);
+    }
+  }
+
+  contactForm.addEventListener('submit', submitContactForm);
+  closeModal.addEventListener('click', hidePopup);
+  modalAction.addEventListener('click', hidePopup);
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) {
+      hidePopup();
+    }
+  });
       }
     } catch (error) {
       showPopup(false);

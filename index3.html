@@ -88,8 +88,16 @@
       max-width: 520px;
       margin-bottom: 44px;
     }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
     .btn-primary {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: var(--sage);
       color: var(--forest);
       padding: 16px 36px;
@@ -98,10 +106,13 @@
       text-decoration: none;
       border: none; cursor: pointer;
       transition: background 0.2s, transform 0.15s;
+      min-width: 220px;
     }
     .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
     .btn-outline {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 1.5px solid var(--stone);
       color: var(--stone);
       padding: 15px 36px;
@@ -109,9 +120,15 @@
       letter-spacing: 0.06em; text-transform: uppercase;
       text-decoration: none;
       margin-left: 16px;
+      min-width: 220px;
       transition: border-color 0.2s, color 0.2s;
     }
     .btn-outline:hover { border-color: var(--white); color: var(--white); }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
     /* ─── SECTION BASE ─── */
     section { padding: 100px 60px; }
@@ -404,8 +421,10 @@
     <p class="hero-eyebrow">Garten & Landschaftsbau · Gegründet 2026</p>
     <h1>Wir gestalten<br><em>Ihren Garten</em><br>nach Maß.</h1>
     <p>Von der ersten Skizze bis zur letzten Pflanzung – Will & Bertuzzo plant, baut und pflegt Außenanlagen, die zu Ihnen passen und über Jahre hinaus begeistern.</p>
-    <a href="#contact" class="btn-primary">Kostenloses Angebot</a>
-    <a href="#services" class="btn-outline">Leistungen ansehen</a>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Kostenloses Angebot</a>
+      <a href="#services" class="btn-outline">Leistungen ansehen</a>
+    </div>
   </div>
 </section>
 

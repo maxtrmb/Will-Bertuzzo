@@ -63,6 +63,11 @@
       display: flex; align-items: center;
       padding: 140px 60px 80px;
     }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
     .hero-content { max-width: 680px; }
     .hero-eyebrow {
       font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
@@ -88,8 +93,16 @@
       max-width: 520px;
       margin-bottom: 44px;
     }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
     .btn-primary {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background: var(--sage);
       color: var(--forest);
       padding: 16px 36px;
@@ -98,10 +111,13 @@
       text-decoration: none;
       border: none; cursor: pointer;
       transition: background 0.2s, transform 0.15s;
+      min-width: 220px;
     }
     .btn-primary:hover { background: var(--white); transform: translateY(-2px); }
     .btn-outline {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 1.5px solid var(--stone);
       color: var(--stone);
       padding: 15px 36px;
@@ -109,6 +125,7 @@
       letter-spacing: 0.06em; text-transform: uppercase;
       text-decoration: none;
       margin-left: 16px;
+      min-width: 220px;
       transition: border-color 0.2s, color 0.2s;
     }
     .btn-outline:hover { border-color: var(--white); color: var(--white); }
@@ -356,6 +373,16 @@
       .about-inner,
       .contact-inner { grid-template-columns: 1fr; gap: 32px; }
       .about-inner { align-items: center; }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-primary,
+      .btn-outline {
+        width: 100%;
+        margin-left: 0;
+      }
+      .btn-outline { margin-top: 14px; }
       .about-img {
         width: 100%; height: auto; max-height: 320px; object-fit: cover;
         border-radius: 8px; box-shadow: 0 8px 20px rgba(17,17,17,0.10);
@@ -404,8 +431,10 @@
     <p class="hero-eyebrow">Garten & Landschaftsbau · Gegründet 2026</p>
     <h1>Wir gestalten<br><em>Ihren Garten</em><br>nach Maß.</h1>
     <p>Von der ersten Skizze bis zur letzten Pflanzung – Will & Bertuzzo plant, baut und pflegt Außenanlagen, die zu Ihnen passen und über Jahre hinaus begeistern.</p>
-    <a href="#contact" class="btn-primary">Kostenloses Angebot</a>
-    <a href="#services" class="btn-outline">Leistungen ansehen</a>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Kostenloses Angebot</a>
+      <a href="#services" class="btn-outline">Leistungen ansehen</a>
+    </div>
   </div>
 </section>
 
@@ -416,6 +445,7 @@
       src="images/Kirschbaum.jpeg"
       alt="Gartenarbeit"
       class="about-img reveal"
+      loading="lazy"
     />
     <div class="reveal">
       <p class="section-label">Über uns</p>
@@ -542,11 +572,11 @@
       <div class="comparison-row">
         <div class="comparison-item">
           <span class="comparison-label">Vorher 1</span>
-          <img src="images/Vorher1.jpeg" alt="Vorher Projekt 1" />
+          <img src="images/Vorher1.jpeg" alt="Vorher Projekt 1" loading="lazy" />
         </div>
         <div class="comparison-item">
           <span class="comparison-label">Nachher 1</span>
-          <img src="images/Nachher1.jpeg" alt="Nachher Projekt 1" />
+          <img src="images/Nachher1.jpeg" alt="Nachher Projekt 1" loading="lazy" />
         </div>
       </div>
     </div>
@@ -555,11 +585,11 @@
       <div class="comparison-row">
         <div class="comparison-item">
           <span class="comparison-label">Vorher 2</span>
-          <img src="images/Vorher2.jpeg" alt="Vorher Projekt 2" />
+          <img src="images/Vorher2.jpeg" alt="Vorher Projekt 2" loading="lazy" />
         </div>
         <div class="comparison-item">
           <span class="comparison-label">Nachher 2</span>
-          <img src="images/Nachher2.jpeg" alt="Nachher Projekt 2" />
+          <img src="images/Nachher2.jpeg" alt="Nachher Projekt 2" loading="lazy" />
         </div>
       </div>
     </div>
@@ -568,11 +598,11 @@
       <div class="comparison-row">
         <div class="comparison-item">
           <span class="comparison-label">Vorher 3</span>
-          <img src="images/Vorher3.jpeg" alt="Vorher Projekt 3" />
+          <img src="images/Vorher3.jpeg" alt="Vorher Projekt 3" loading="lazy" />
         </div>
         <div class="comparison-item">
           <span class="comparison-label">Nachher 3</span>
-          <img src="images/Nachher3.jpeg" alt="Nachher Projekt 3" />
+          <img src="images/Nachher3.jpeg" alt="Nachher Projekt 3" loading="lazy" />
         </div>
       </div>
     </div>
